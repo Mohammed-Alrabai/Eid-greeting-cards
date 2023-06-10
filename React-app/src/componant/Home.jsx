@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import Card from "./Cards";
 import Hero from "./Hero";
 import bgEid from "../assets/img/img-eid.jpg";
+import { useRef} from "react";
 
 function Home() {
     const cardProps = [
@@ -60,11 +61,12 @@ function Home() {
           "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
       },
     ];
+    const ref = useRef(null);
   return (
     <>
       <Navbar />
-      <Hero />
-      <Card cardProps={cardProps} id="cards"/>
+      <Hero ref={ref} />
+      <Card cardProps={cardProps} id="cards" ref={ref} />
       <Footer />
     </>
   );

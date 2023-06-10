@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import {
   chakra,
   Box,
@@ -13,9 +13,13 @@ import { AiOutlineMenu } from "react-icons/ai";
 import bgHero from "../assets/img/8941966.svg";
 import { useNavigate } from "react-router-dom";
 
-export default function Hero() {
+const Hero = forwardRef((props, ref) => {
   const navigate = useNavigate();
   const bg = useColorModeValue("white", "gray.800");
+
+  const handleClick = () => {
+    ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <chakra.header bg={"#310752"}>
@@ -42,7 +46,8 @@ export default function Hero() {
               textTransform="uppercase">
               عيد اضحى مبارك
               <chakra.span color="#b87ccf" textDecor="">
-                <br></br> وكل عام وانتم بخير
+                <br />
+                وكل عام وانتم بخير
               </chakra.span>
             </Heading>
             <Button
@@ -50,8 +55,7 @@ export default function Hero() {
               textTransform="uppercase"
               w="fit-content"
               _hover={{ bg: "#b054d4" }}
-              onClick={() => navigate("#cards")}
-              >
+              onClick={handleClick}>
               ابحث عن بطاقات معايدة
             </Button>
           </Stack>
@@ -59,4 +63,6 @@ export default function Hero() {
       </Box>
     </chakra.header>
   );
-}
+});
+
+export default Hero;
